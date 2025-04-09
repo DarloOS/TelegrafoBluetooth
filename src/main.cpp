@@ -55,7 +55,7 @@ char letra = ' ';
 bool flag_imprimirEnv = false;
 bool flagEnv = true; //para evitar que se imprima más de un espacio seguido
 char letraEnv = ' ';
-bool caca = true;
+bool lectura = true;
 
 void loop() {
 	tiempoActual = millis();
@@ -119,26 +119,31 @@ void loop() {
 	
 	if (digitalRead(punto) == HIGH) {
 		tiempo1 = millis();
-		while (caca) {
+		while (lectura) {
 			if ((tiempo1 - tiempo2) > 200) {
 				codigoEnvio += '.';
 				SerialBT.write('.');
 				Serial.println(codigoEnvio);
 				tiempo2 = tiempo1;
-				caca = false;
+				lectura = false;
 			}
 		}
 	}
-	caca = true;
+	lectura = true;
 
-	/*
 	if (digitalRead(linea) == HIGH) {
-		codigoEnvio += '-';
-		SerialBT.write('-');
-		Serial.println(codigoEnvio);
-		delay(500);
+		tiempo1 = millis();
+		while (lectura) {
+			if ((tiempo1 - tiempo2) > 200) {
+				codigoEnvio += '-';
+				SerialBT.write('-');
+				Serial.println(codigoEnvio);
+				tiempo2 = tiempo1;
+				lectura = false;
+			}
+		}
 	}
-	*/
+	lectura = true;
 	
 
 	//detectar fin de letra esperar 1 segundo
