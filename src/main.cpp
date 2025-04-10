@@ -156,7 +156,6 @@ if (estadoActualLinea == HIGH && estadoAnteriorLinea == LOW &&
 		codigoEnvio = "";
 		flagEnv = false; //se baja la flag
 		flag_imprimirEnv = true;
-		SerialBT.write(letraEnv);
 		ultimoTiempoEnv = millis();
 	}
 	
@@ -164,7 +163,6 @@ if (estadoActualLinea == HIGH && estadoAnteriorLinea == LOW &&
 	if(!flagEnv && letraEnv == ' '){ 
 		if (tiempoActualEnv - ultimoTiempoEnv > pausaPalabra) {
 		  	flagEnv = true; //se sube la flag
-			SerialBT.write(' ');
 		  	flag_imprimirEnv = true;
 		  	ultimoTiempoEnv = millis();
 		}
