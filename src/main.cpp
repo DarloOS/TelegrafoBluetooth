@@ -7,6 +7,7 @@
 
 #define punto 25
 #define linea 26 
+#define led 27
 
 // Dirección I2C del LCD y tamaño de la pantalla
 LiquidCrystal_I2C lcd(0x27, 16, 2); 
@@ -14,6 +15,7 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 BluetoothSerial SerialBT;
 
 void setup() {
+	
 	Serial.begin(115200);
 	Wire.begin(21, 22);
 
@@ -28,6 +30,7 @@ void setup() {
 	// botones para puntos y líneas
 	pinMode(punto, INPUT_PULLDOWN);
 	pinMode(linea, INPUT_PULLDOWN);
+	pinMode(led, OUTPUT);
 }
 
 String codigoActual = "";
@@ -60,7 +63,25 @@ char letraEnv = ' ';
 bool estadoAnteriorPunto = LOW;
 bool estadoAnteriorLinea = LOW;
 
+// Comprobación de conexión
+bool conectado = false;
+
 void loop() {
+
+	// Led de conexión
+	while (!conectado) {
+		delay(500);
+		digitalWrite(led, HIGH);
+		delay(500);
+		digitalWrite(led, LOW);
+		String mesConectado = "";
+		mesConectado = SerialBT.read();
+		if (mesConectado == "Conectado!") {
+			digitalWrite(led, HIGH);
+			conectado = true;
+		}
+	}
+
 	tiempoActual = millis();
 	tiempoActualEnv = millis();
 	//################### RECIBIR DATOS ################### 
@@ -160,7 +181,7 @@ if (estadoActualLinea == HIGH && estadoAnteriorLinea == LOW &&
 	}
 	
 	//detectar fin de palabra esperar 2 segundos 
-	if(!flagEnv && letraEnv == ' '){ 
+	if(!flagEnv && letraEnv == '_'){ 
 		if (tiempoActualEnv - ultimoTiempoEnv > pausaPalabra) {
 		  	flagEnv = true; //se sube la flag
 		  	flag_imprimirEnv = true;
@@ -172,7 +193,7 @@ if (estadoActualLinea == HIGH && estadoAnteriorLinea == LOW &&
 	if(flag_imprimirEnv){
 		lcd.setCursor(col2, 1);
 		lcd.print(letraEnv);
-		letraEnv = ' ';
+		letraEnv = '_';
 		col2++;
 		if (col2 >= 16) {
 		  	col2 = 0;
