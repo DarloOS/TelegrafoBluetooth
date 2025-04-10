@@ -7,7 +7,6 @@
 
 #define punto 25
 #define linea 26 
-#define led 27
 
 // Dirección I2C del LCD y tamaño de la pantalla
 LiquidCrystal_I2C lcd(0x27, 16, 2); 
@@ -24,13 +23,12 @@ void setup() {
 	lcd.setCursor(0, 0); // columna 0, fila 0
 	lcd.clear();
 
-	SerialBT.begin("ESP32_Receptor"); // Nombre Bluetooth del dispositivo
+	SerialBT.begin("ESP32_Receptor", false); // Nombre Bluetooth del dispositivo
 	Serial.println("Esperando señales Morse por Bluetooth...");
 
 	// botones para puntos y líneas
 	pinMode(punto, INPUT_PULLDOWN);
 	pinMode(linea, INPUT_PULLDOWN);
-	pinMode(led, OUTPUT);
 }
 
 String codigoActual = "";
@@ -64,24 +62,8 @@ bool estadoAnteriorPunto = LOW;
 bool estadoAnteriorLinea = LOW;
 
 // Comprobación de conexión
-bool conectado = false;
 
 void loop() {
-
-	// Led de conexión
-	while (!conectado) {
-		delay(500);
-		digitalWrite(led, HIGH);
-		delay(500);
-		digitalWrite(led, LOW);
-		String mesConectado = "";
-		mesConectado = SerialBT.read();
-		if (mesConectado == "Conectado!") {
-			digitalWrite(led, HIGH);
-			conectado = true;
-		}
-	}
-
 	tiempoActual = millis();
 	tiempoActualEnv = millis();
 	//################### RECIBIR DATOS ################### 
