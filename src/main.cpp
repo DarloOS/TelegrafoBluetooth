@@ -26,8 +26,8 @@ void setup() {
 	Serial.println("Esperando señales Morse por Bluetooth...");
 
 	// botones para puntos y líneas
-	pinMode(punto, INPUT);
-	pinMode(linea, INPUT);
+	pinMode(punto, INPUT_PULLDOWN);
+	pinMode(linea, INPUT_PULLDOWN);
 }
 
 String codigoActual = "";
@@ -37,14 +37,14 @@ unsigned long tiempoActual = 0;
 unsigned long ultimoTiempoEnv = 0;
 unsigned long tiempoActualEnv = 0;
 
-const unsigned long pausaLetra = 1500;    // 1500 milisegundos
-const unsigned long pausaPalabra = 2500;  // 2500 milisegundos
+const unsigned long pausaLetra = 500;    // 1500 milisegundos
+const unsigned long pausaPalabra = 1000;  // 2500 milisegundos
 
 u_int8_t col = 0;
 u_int8_t col2 = 0;
 
-long tiempo1 = 0L;
-long tiempo2 = 0L;
+unsigned long tiempo1 = 0; //debounce de la línea 
+unsigned long tiempo2 = 0; //debounce del punto
 
 /// Variales para recibir
 bool flag_imprimir = false;
@@ -55,7 +55,10 @@ char letra = ' ';
 bool flag_imprimirEnv = false;
 bool flagEnv = true; //para evitar que se imprima más de un espacio seguido
 char letraEnv = ' ';
-bool lectura = true;
+
+// Variables para detectar flanco de subida
+bool estadoAnteriorPunto = LOW;
+bool estadoAnteriorLinea = LOW;
 
 void loop() {
 	tiempoActual = millis();
@@ -116,34 +119,35 @@ void loop() {
 			Serial.println(codigoEnvio);
 		}
 	}
-	
-	if (digitalRead(punto) == HIGH) {
-		tiempo1 = millis();
-		while (lectura) {
-			if ((tiempo1 - tiempo2) > 200) {
-				codigoEnvio += '.';
-				SerialBT.write('.');
-				Serial.println(codigoEnvio);
-				tiempo2 = tiempo1;
-				lectura = false;
-			}
-		}
-	}
-	lectura = true;
+	// Leer estados actuales de botones
+  bool estadoActualPunto = digitalRead(punto);
+  bool estadoActualLinea = digitalRead(linea);
 
-	if (digitalRead(linea) == HIGH) {
-		tiempo1 = millis();
-		while (lectura) {
-			if ((tiempo1 - tiempo2) > 200) {
-				codigoEnvio += '-';
-				SerialBT.write('-');
-				Serial.println(codigoEnvio);
-				tiempo2 = tiempo1;
-				lectura = false;
-			}
-		}
-	}
-	lectura = true;
+	// Botón punto con debounce
+	if (estadoActualPunto == HIGH && estadoAnteriorPunto == LOW &&
+    (millis() - tiempo2) > 100) {
+    codigoEnvio += '.';
+    SerialBT.write('.');
+    Serial.println(codigoEnvio);
+    ultimoTiempoEnv = millis();
+    pitido('.');
+    tiempo2 = millis();
+}
+
+// Botón línea con debounce y flanco de subida
+if (estadoActualLinea == HIGH && estadoAnteriorLinea == LOW &&
+    (millis() - tiempo1) > 100) {
+    codigoEnvio += '-';
+    SerialBT.write('-');
+    Serial.println(codigoEnvio);
+    ultimoTiempoEnv = millis();
+    pitido('-');
+    tiempo1 = millis();
+}
+
+	// Actualizar estados anteriores
+	estadoAnteriorPunto = estadoActualPunto;
+	estadoAnteriorLinea = estadoActualLinea;
 	
 
 	//detectar fin de letra esperar 1 segundo
