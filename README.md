@@ -38,6 +38,29 @@ Dado que la comunicación por Bluetooth está sujeta a restricciones físicas de
 - Bluetooth 4.2 (BR/EDR y BLE)
 - Comunicación I2c
 
+## Directorios y Archivos
+
+- **Esclavo:**
+    - main.cpp
+    - utilidades.cpp   
+    - utilidades.h
+
+
+- **Maestro:**
+    - main.cpp
+    - utilidades.cpp   
+    - utilidades.h
+
+
+- **Modelos CAD:**
+    - MainFrame.stl
+    - Soporte_Bateria.stl
+    - Tapa_derecha_trasera.stl
+    - Tapa_izquierda_trasera.stl
+
+- **platformio.ini:** archivo de configuración para PlatformIO
+
+
 ## Documentación
 La Documentación consultada son las respectivas Datasheet de los componentes y las documentaciones de las librerías usadas:
 
