@@ -12,8 +12,8 @@ Dado que la comunicación por Bluetooth está sujeta a restricciones físicas de
 
 
 ## Autores 
- - Dario Acuña Soutullo
- - Javier Gonzales Velazquez
+ - Darlo.exe aka Darlocorp aka Darlo.OS
+ - JavierGlezVel
 
 
 # Características del sistema
