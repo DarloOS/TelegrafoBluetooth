@@ -58,6 +58,7 @@ Dado que la comunicación por Bluetooth está sujeta a restricciones físicas de
     - Soporte_Bateria.stl
     - Tapa_derecha_trasera.stl
     - Tapa_izquierda_trasera.stl
+      
 Todas las roscas modeladas en los modelos cad son roscas M3 según el perfil regular métrtico ISO. Según la maquinaria que se use para la impresión o la fabricación de las partes o el material usado puede que el modelo final requiera de tornillos distintos de un M3. En este caso se usó una impresora 3D creality Ender3 y PLA, lo que resulto en el uso de tornillos M2.5 para el ensamblado final.
 - **platformio.ini:** archivo de configuración para PlatformIO
 
