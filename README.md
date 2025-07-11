@@ -93,3 +93,9 @@ La Documentación consultada son las respectivas Datasheet de los componentes y 
 **[LiquidCrystal_I2C.h](https://github.com/johnrickman/LiquidCrystal_I2C):**  Librería para pantallas LCD (16x2, 20x4, etc.) con interfaz I2C basada en el chip PCF8574.
 
 
+## Comentarios
+No se ha profundizado en la optimización del código, ya que, debido a su simplicidad, no ha sido estrictamente necesario. Sin embargo, esto no implica que el código no sea susceptible de mejoras. Cualquier optimización o incorporación de nuevas funcionalidades es altamente recomendable, y se anima a ello como parte del proceso de mejora continua.
+
+Asimismo, se invita a explorar posibles mejoras en la comunicación a mayor distancia, tal como se mencionó en el apartado inicial del proyecto, por ejemplo mediante el uso de nodos intermedios o alternativas de red distribuida.
+
+
