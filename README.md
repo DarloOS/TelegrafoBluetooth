@@ -61,6 +61,11 @@ Dado que la comunicación por Bluetooth está sujeta a restricciones físicas de
 
 - **platformio.ini:** archivo de configuración para PlatformIO
 
+## Observaciones
+Para llevar a cabo el proyecto, es necesario modificar el código del dispositivo maestro, ya que la conexión Bluetooth entre las dos placas ESP32 se establece utilizando la dirección MAC del microcontrolador que actuará como esclavo.
+
+Para obtener dicha dirección MAC, se puede hacer uso del archivo dir_mac.cpp, que permite identificar y mostrar la dirección única del dispositivo esclavo. Esta dirección debe ser incorporada en el código del maestro para establecer correctamente la conexión Bluetooth.
+
 
 ## Documentación
 La Documentación consultada son las respectivas Datasheet de los componentes y las documentaciones de las librerías usadas:
