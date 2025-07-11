@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <BluetoothSerial.h>
-#include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "utilidades.h"
