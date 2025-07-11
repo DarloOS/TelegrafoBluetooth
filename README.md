@@ -31,7 +31,8 @@ Dado que la comunicación por Bluetooth está sujeta a restricciones físicas de
 - Tiempo de pausa configurable entre letras y palabras: Parámetros ajustables que permiten adaptar el ritmo de comunicación a las preferencias o necesidades del usuario.
 ## Tecnologías usadas
 
-- Vscode (Visual Studio Code) 
+- Vscode (Visual Studio Code)
+- FreeCAD
 - PlatformIO
 - Arduino IDE
 - PuTTY
