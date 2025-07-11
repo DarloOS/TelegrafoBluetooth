@@ -98,4 +98,4 @@ No se ha profundizado en la optimización del código, ya que, debido a su simpl
 
 Asimismo, se invita a explorar posibles mejoras en la comunicación a mayor distancia, tal como se mencionó en el apartado inicial del proyecto, por ejemplo mediante el uso de nodos intermedios o alternativas de red distribuida.
 
-
+Por otro lado, los aspectos relacionados con la seguridad de la información no han sido contemplados en esta implementación. No se ha evaluado la confidencialidad ni la integridad de los mensajes transmitidos, por lo que el sistema no debe considerarse seguro en su estado actual. Se deja abierta la posibilidad de futuras mejoras en este ámbito, como el cifrado de datos o la autenticación entre dispositivos.
