@@ -67,6 +67,8 @@ Para llevar a cabo el proyecto, es necesario modificar el código del dispositiv
 
 Para obtener dicha dirección MAC, se puede hacer uso del archivo dir_mac.cpp, que permite identificar y mostrar la dirección única del dispositivo esclavo. Esta dirección debe ser incorporada en el código del maestro para establecer correctamente la conexión Bluetooth.
 
+![Esquemátco](Imagenes/Esquema.png)
+
 
 ## Documentación
 La Documentación consultada son las respectivas Datasheet de los componentes y las documentaciones de las librerías usadas:
