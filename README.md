@@ -12,7 +12,7 @@ Dado que la comunicación por Bluetooth está sujeta a restricciones físicas de
 
 
 ## Autores 
- - Darlo.exe aka Darlocorp aka Darlo.OS
+ - Dario Acuña Soutullo aka Darlo.exe aka Darlocorp aka Darlo.OS 
  - JavierGlezVel
 
 
